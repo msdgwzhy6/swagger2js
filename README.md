@@ -29,7 +29,7 @@ export default {
   /**
    * 域名
    */
-  domain: 'http://192.168.1.51:10101/doctor',
+  domain: 'http://192.168.1.16:8080/manage',
 
   /**
    * 初始化权限
