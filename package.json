@@ -1,0 +1,29 @@
+{
+  "name": "swagger2js",
+  "version": "1.0.0",
+  "description": "根据swagger的json数据生成js可直接使用的API文件",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoonzm/swagger2js.git"
+  },
+  "keywords": [
+    "swagger",
+    "js",
+    "codegen"
+  ],
+  "author": "yoonzm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yoonzm/swagger2js/issues"
+  },
+  "homepage": "https://github.com/yoonzm/swagger2js#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "js-beautify": "^1.10.0",
+    "mustache": "^3.0.1"
+  }
+}

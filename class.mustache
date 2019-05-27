@@ -1,0 +1,22 @@
+interface Result {
+    url: string;
+    method: string;
+    body: any;
+}
+
+/**
+* {{&title}}
+* {{&description}}
+* 接口数量:{{&methodCount}}
+*/
+export default {
+    /**
+    * 域名
+    */
+    domain: '{{&domain}}',
+
+    {{#methods}}
+        {{> method}}
+
+    {{/methods}}
+}

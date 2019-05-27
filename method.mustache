@@ -1,0 +1,45 @@
+/**
+* {{&description}}
+* @method
+*/
+{{&methodName}}(
+{{#params}}
+    path{{^path}}?{{/path}}: {
+    {{#path}}
+        {{key}}:{{type}};
+    {{/path}}
+    },
+    query?: {
+    {{#query}}
+        {{#description}}
+        // {{&description}}
+        {{/description}}
+        {{key}}{{#optional}}?{{/optional}}:{{type}};
+    {{/query}}
+    },
+    body?: {
+    {{#body}}
+        {{#description}}
+        // {{&description}}
+        {{/description}}
+        {{key}}{{#optional}}?{{/optional}}:{{type}};
+    {{/body}}
+    }
+{{/params}}
+): Result {
+let queryParams = '';
+{{#params.query}}
+    if (query.{{key}} !== undefined) {
+    queryParams += `{{key}}=${ query.{{key}} }`
+    }
+{{/params.query}}
+if (queryParams) {
+queryParams = '?' + queryParams;
+}
+
+return {
+url: `{{&url}}` + queryParams,
+method: '{{&requestMethod}}',
+body
+}
+},
