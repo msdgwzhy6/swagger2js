@@ -24,8 +24,8 @@ interface Result {
 }
 
 /**
- * 云医生服务
- * 云患者服务接口文档
+ * manage服务
+ * 接口文档
  * 接口数量:69
  */
 export default {
