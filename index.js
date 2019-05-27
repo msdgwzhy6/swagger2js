@@ -24,6 +24,8 @@ const transType = (type) => {
     return 'number';
   } else if (type === 'boolean') {
     return 'boolean';
+  }else if (type === 'array') {
+    return '[]';
   }
   return type;
 };
