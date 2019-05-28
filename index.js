@@ -10,6 +10,7 @@ const fs = require('fs');
 const beautify = require('js-beautify').js_beautify;
 const axios = require("axios");
 const process = require('child_process');
+const spawn = require('cross-spawn');
 
 const isPathParam = word => word.includes('{') || word.includes('}');
 // 去除括号
@@ -29,6 +30,18 @@ const transType = (type) => {
   }
   return type;
 };
+
+function userHasTsc() {
+  try {
+    const result = spawn.sync('tsc', ['--version'], { stdio: 'ignore' });
+    if (result.error || result.status !== 0) {
+      return false;
+    }
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
 
 /**
  * 格式化path为方法名
@@ -223,13 +236,17 @@ function swagger2js({swaggerUrl, pathName = 'API', config}) {
       }
       console.log(`${pathName}.ts 已生成----------------------------------------------`);
 
-      process.exec(`tsc ${pathName}.ts`,function (error, stdout, stderr) {
-        if (!error) {
-          console.log(`${pathName}.js 已生成----------------------------------------------`);
-        } else {
-          console.log(`${pathName}.js 生成失败, 请确认是否全局安装typescript [npm install -g typescript]`, error);
-        }
-      });
+      if (!userHasTsc()) {
+        console.log(`${pathName}.js 生成失败, 请确认是否全局安装typescript [npm install -g typescript]`);
+      } else {
+        process.exec(`tsc ${pathName}.ts`,function (error, stdout, stderr) {
+          if (!error) {
+            console.log(`${pathName}.js 已生成----------------------------------------------`);
+          } else {
+            console.log(`${pathName}.js 生成失败`, error);
+          }
+        });
+      }
     })
   }).catch(function (err) {
     console.error(new Error(err));
