@@ -4,6 +4,9 @@
 */
 {{&methodName}}(
 {{#params}}
+    {
+    path, query = {}, body = {}, config = {}
+    }: {
     path{{^path}}?{{/path}}: {
     {{#path}}
         {{key}}:{{type}};
@@ -12,7 +15,7 @@
     query?: {
     {{#query}}
         {{#description}}
-        // {{&description}}
+            // {{&description}}
         {{/description}}
         {{key}}{{#optional}}?{{/optional}}:{{type}};
     {{/query}}
@@ -20,26 +23,20 @@
     body?: {
     {{#body}}
         {{#description}}
-        // {{&description}}
+            // {{&description}}
         {{/description}}
         {{key}}{{#optional}}?{{/optional}}:{{type}};
     {{/body}}
-    }
+    },
+    config? : AxiosRequestConfig
+    } | any = {}
 {{/params}}
-): Result {
-let queryParams = '';
-{{#params.query}}
-    if (query.{{key}} !== undefined) {
-    queryParams += `{{key}}=${ query.{{key}} }`
-    }
-{{/params.query}}
-if (queryParams) {
-queryParams = '?' + queryParams;
-}
+): {{&responseType}} {
 
-return {
-url: `{{&url}}` + queryParams,
-method: '{{&requestMethod}}',
-body
-}
+return this.getInstance.request({
+    url: `{{&url}}` + this.getQueryParams(query),
+    method: '{{&requestMethod}}',
+    data: body,
+    ...config
+})
 },

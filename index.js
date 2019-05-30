@@ -56,11 +56,13 @@ function getMethodName(path) {
   const pathStr = path.split('/')
     .filter(word => !!word && !isPathParam(word))
     .map(replaceHorizontal)
+    .map(word => word.toLowerCase())
     .join('_');
   // url中的参数
   const pathParamStr = path.split('/')
     .filter(word => !!word && isPathParam(word))
     .map(delBrackets)
+    .map(word => word.toLowerCase())
     .join('_');
 
   if (pathParamStr) {
@@ -115,7 +117,7 @@ function getQueryParams(parameters) {
     .map(par => ({
       key: par.name,
       type: transType(par.type),
-      optional: !par.required,
+      optional: true,
       description: par.description
     }))
 }
@@ -172,7 +174,7 @@ function getViewForSwagger(swaggerJson) {
 
   Object.keys(paths).forEach(path => {
     const requestMethods = paths[path];
-    Object.keys(requestMethods).forEach(requestMethod => {
+    Object.keys(requestMethods).slice(0, 10).forEach(requestMethod => {
       const methodObj = requestMethods[requestMethod];
       methods.push({
         methodName: requestMethod + '_' + getMethodName(path),
@@ -184,7 +186,8 @@ function getViewForSwagger(swaggerJson) {
           path: getPathParams(path),
           query: getQueryParams(methodObj.parameters),
           body: getBodyParams(methodObj.parameters, definitions)
-        }
+        },
+        responseType: "AxiosPromise<Result>"
       })
     });
   });
@@ -193,7 +196,7 @@ function getViewForSwagger(swaggerJson) {
     version: swagger,
     title,
     description,
-    domain: 'http://' + host + basePath,
+    _baseURL: 'http://' + host + basePath + '/',
     methods,
     methodCount: methods.length
   };

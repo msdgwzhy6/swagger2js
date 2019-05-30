@@ -1,0 +1,7383 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "云患者服务接口文档",
+    "version": "1.0",
+    "title": "云医生服务",
+    "termsOfService": "https://www.baidu.com/"
+  },
+  "host": "192.168.1.51:10101",
+  "basePath": "/doctor",
+  "tags": [
+    {
+      "name": "OSS文件上传",
+      "description": "Oss File Controller"
+    },
+    {
+      "name": "cli-printer-config-controller",
+      "description": "Cli Printer Config Controller"
+    },
+    {
+      "name": "common-controller",
+      "description": "通用查询接口"
+    },
+    {
+      "name": "doc-common-controller",
+      "description": "Doc Common Controller"
+    },
+    {
+      "name": "doc-hos-info-controller",
+      "description": "Doc Hos Info Controller"
+    },
+    {
+      "name": "doc-im-controller",
+      "description": "Doc Im Controller"
+    },
+    {
+      "name": "msg-manage-controller",
+      "description": "Msg Manage Controller"
+    },
+    {
+      "name": "other-buss-controller",
+      "description": "其他接口，不作为业务接口使用"
+    },
+    {
+      "name": "test-controller",
+      "description": "Test Controller"
+    },
+    {
+      "name": "医生实名认证相关接口",
+      "description": "Doc Real Name Controller"
+    },
+    {
+      "name": "医生用户基本信息接口",
+      "description": "Doc Info Controller"
+    },
+    {
+      "name": "咨询相关接口",
+      "description": "Consult Master Controller"
+    },
+    {
+      "name": "线上号源接口",
+      "description": "Book Duty Roster Online Controller"
+    }
+  ],
+  "paths": {
+    "/other/init/{hosId}": {
+      "post": {
+        "tags": [
+          "other-buss-controller"
+        ],
+        "summary": "初始化医生权限信息",
+        "description": "初始化权限",
+        "operationId": "initPerUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "deptCodes",
+            "in": "query",
+            "description": "deptCodes",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "hosId",
+            "in": "path",
+            "description": "hosId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/other/initdocinfo/{hosId}": {
+      "post": {
+        "tags": [
+          "other-buss-controller"
+        ],
+        "summary": "初始化医生账户信息",
+        "description": "初始化医生账户信息",
+        "operationId": "initDocInfoUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "hosId",
+            "in": "path",
+            "description": "hosId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/printer": {
+      "post": {
+        "tags": [
+          "cli-printer-config-controller"
+        ],
+        "summary": "保存信息",
+        "description": "保存信息",
+        "operationId": "saveUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "config",
+            "description": "config",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CliPrinterConfig"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/test/dutyday/{deptCode}/{startDate}/{endDate}": {
+      "get": {
+        "tags": [
+          "test-controller"
+        ],
+        "summary": "getDutyDay",
+        "description": "查询指定时间，指定科室,指定医生是否有排班",
+        "operationId": "getDutyDayUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "deptCode",
+            "in": "path",
+            "description": "科室code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "docCode",
+            "in": "query",
+            "description": "医生code",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "endDate",
+            "in": "path",
+            "description": "需要查询的时间范围，比如一周的结束时间",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "startDate",
+            "in": "path",
+            "description": "需要查询的时间范围，比如一周的开始时间",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/test/feign/pat/dept": {
+      "get": {
+        "tags": [
+          "test-controller"
+        ],
+        "summary": "getPatDept",
+        "operationId": "getPatDeptUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/test/feign/pat/doc/{deptCode}": {
+      "get": {
+        "tags": [
+          "test-controller"
+        ],
+        "summary": "getDocInfo",
+        "operationId": "getDocInfoUsingGET_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "deptCode",
+            "in": "path",
+            "description": "deptCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "endDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "startDate",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/common/allparams/{hosId}": {
+      "get": {
+        "tags": [
+          "common-controller"
+        ],
+        "summary": "根据医院id查询所有系统参数",
+        "operationId": "getParamsByHosIdUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "hosId",
+            "in": "path",
+            "description": "hosId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/common/avatar/{userId}/{accountType}": {
+      "get": {
+        "tags": [
+          "doc-common-controller"
+        ],
+        "summary": "getAvatar",
+        "operationId": "getAvatarUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountType",
+            "in": "path",
+            "description": "accountType",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/common/busstype/hos": {
+      "get": {
+        "tags": [
+          "common-controller"
+        ],
+        "summary": "getHospitalByBussType",
+        "operationId": "getHospitalByBussTypeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "bussTypes",
+            "in": "query",
+            "description": "bussTypes",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/common/depts/types/{hosId}": {
+      "get": {
+        "tags": [
+          "common-controller"
+        ],
+        "summary": "getDeptsByTypes",
+        "operationId": "getDeptsByTypesUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "hosId",
+            "in": "path",
+            "description": "hosId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "types",
+            "in": "query",
+            "description": "types",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/common/depts/{hosId}": {
+      "get": {
+        "tags": [
+          "common-controller"
+        ],
+        "summary": "获取指定医院科室列表（用于下来框展示）,科室过滤条件：科室类型等，根据实际需求添加",
+        "operationId": "getDeptsUsingGET_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "filter",
+            "required": false,
+            "type": "object"
+          },
+          {
+            "name": "hosId",
+            "in": "path",
+            "description": "hosId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/common/depts/{hosId}/{deptCode}": {
+      "get": {
+        "tags": [
+          "common-controller"
+        ],
+        "summary": "获取指定医院的科室信息",
+        "operationId": "getDeptsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "deptCode",
+            "in": "path",
+            "description": "deptCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "hosId",
+            "in": "path",
+            "description": "hosId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/common/dic/{hosId}": {
+      "get": {
+        "tags": [
+          "common-controller"
+        ],
+        "summary": "查询指定医院和指定字典项下的字典值（用于下来框展示）,支持一次获取多个字典项，字典项之间用,隔开，比如：stan_profession,auth_state",
+        "operationId": "getDicsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dicCodes",
+            "in": "query",
+            "description": "dicCodes",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "hosId",
+            "in": "path",
+            "description": "hosId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/common/hos": {
+      "get": {
+        "tags": [
+          "common-controller"
+        ],
+        "summary": "获取医院列表（用于下来框展示）",
+        "description": "获取医院列表",
+        "operationId": "getHospitalUsingGET_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«List«HospitalVO»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/common/hos/{hosId}": {
+      "get": {
+        "tags": [
+          "common-controller"
+        ],
+        "summary": "获取指定医院信息",
+        "operationId": "getHospitalUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "hosId",
+            "in": "path",
+            "description": "hosId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/common/params/{hosId}/{paramCode}": {
+      "get": {
+        "tags": [
+          "common-controller"
+        ],
+        "summary": "获取指定医院指定参数的值",
+        "operationId": "getParamsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "hosId",
+            "in": "path",
+            "description": "hosId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "paramCode",
+            "in": "path",
+            "description": "paramCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/consultmaster/page": {
+      "get": {
+        "tags": [
+          "咨询相关接口"
+        ],
+        "summary": "getPage",
+        "operationId": "getPageUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "consultStatus",
+            "in": "query",
+            "description": "consultStatus",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endTime",
+            "in": "query",
+            "description": "endTime",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "keyWord",
+            "in": "query",
+            "description": "keyWord",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "payStatus",
+            "in": "query",
+            "description": "payStatus",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": false,
+            "type": "integer",
+            "default": 20,
+            "format": "int32"
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "description": "startTime",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "type",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/dochosinfo": {
+      "get": {
+        "tags": [
+          "获取医院医生"
+        ],
+        "summary": "获取医院医生",
+        "description": "获取医院医生",
+        "operationId": "getDocHosInfoUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«医院用户»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/avatar/{userId}": {
+      "get": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "getAvatar",
+        "operationId": "getAvatarUsingGET_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/bind-phone-verifcationcode": {
+      "get": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "bindPhoneVerificationcode",
+        "operationId": "bindPhoneVerificationcodeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "phone",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/bind-wechat": {
+      "post": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "bindWechatId",
+        "operationId": "bindWechatIdUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "loginParamVo",
+            "description": "loginParamVo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DocLoginParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«DocLoginParam»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/bindle-verificationcode": {
+      "get": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "bindleVerificationcode",
+        "operationId": "bindleVerificationcodeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "phone",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/bindphone": {
+      "put": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "bindphone",
+        "operationId": "bindphoneUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "phone",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/bindwechat": {
+      "post": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "bindWechat",
+        "description": "绑定微信",
+        "operationId": "bindWechatUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "param",
+            "description": "param",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DocLoginParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/changename": {
+      "put": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "changeUsername",
+        "operationId": "changeUsernameUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "in": "query",
+            "description": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«DocLoginParam»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/createAccount/{hosId}/{docCode}": {
+      "post": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "createAccount",
+        "description": "通过医院id和医生code 创建医生",
+        "operationId": "createAccountUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "docCode",
+            "in": "path",
+            "description": "docCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "hosId",
+            "in": "path",
+            "description": "hosId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/exist-by-email": {
+      "get": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "checkUserExistByEmail",
+        "operationId": "checkUserExistByEmailUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«DocLoginParam»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/exist-by-phone": {
+      "get": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "checkUserExistByPhone",
+        "description": "校验手机是否被绑定",
+        "operationId": "checkUserExistByPhoneUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "phone",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/exist-by-username": {
+      "get": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "checkUserExistByUsername",
+        "operationId": "checkUserExistByUsernameUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "in": "query",
+            "description": "username",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/forget-password-modify-password": {
+      "put": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "forgetPasswordModifyPassword",
+        "description": "忘记密码修改密码",
+        "operationId": "forgetPasswordModifyPasswordUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "description": "code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "newpassword",
+            "in": "query",
+            "description": "newpassword",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "phone",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/forget-password-verificationcode": {
+      "get": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "forgetPasswordVerificationcode",
+        "operationId": "forgetPasswordVerificationcodeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "phone",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/info": {
+      "get": {
+        "tags": [
+          "获取用户基本信息",
+          "医生用户基本信息接口"
+        ],
+        "summary": "获取用户基本信息",
+        "description": "获取用户基本信息",
+        "operationId": "getDocInfoUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«用户基本信息»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/login-by-doccode": {
+      "post": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "loginByDoccodeAndHosId",
+        "description": "通过医院id和医生code 登录",
+        "operationId": "loginByDoccodeAndHosIdUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "loginParam",
+            "description": "loginParam",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DocLoginParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/login-by-password": {
+      "post": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "loginByPassword",
+        "description": "通过密码登录",
+        "operationId": "loginByPasswordUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "loginParamVo",
+            "description": "loginParamVo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DocLoginParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«AuthToken»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/login-by-verificationcode": {
+      "post": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "loginByVerificationcode",
+        "operationId": "loginByVerificationcodeUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "loginParamVo",
+            "description": "loginParamVo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DocLoginParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«DocLoginParam»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/login-by-wechat": {
+      "post": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "loginByWechat",
+        "description": "通过微信登录",
+        "operationId": "loginByWechatUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "loginParam",
+            "description": "loginParam",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DocLoginParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/login-verificationcode": {
+      "get": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "loginVerificationcode",
+        "operationId": "loginVerificationcodeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "phone",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/logout": {
+      "get": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "logout",
+        "operationId": "logoutUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "description": "token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«DocLoginParam»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "logout",
+        "description": "登出",
+        "operationId": "logoutUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/modify-password": {
+      "put": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "modifyPassword",
+        "description": "修改密码",
+        "operationId": "modifyPasswordUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "oldpassword",
+            "in": "query",
+            "description": "oldpassword",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "password",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/refresh": {
+      "post": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "refreshToken",
+        "operationId": "refreshTokenUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "authToken",
+            "description": "authToken",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthToken"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«AuthToken»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/register-verificationcode": {
+      "get": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "registerVerificationcode",
+        "operationId": "registerVerificationcodeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "phone",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/reset-password/{userId}": {
+      "put": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "resetPassword",
+        "operationId": "resetPasswordUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«DocLoginParam»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/resetwechat": {
+      "put": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "resetWechat",
+        "operationId": "resetWechatUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«DocLoginParam»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/superclient/login/{userId}/{verCode}": {
+      "post": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "superClientLogin",
+        "operationId": "superClientLoginUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "verCode",
+            "in": "path",
+            "description": "verCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«DocLoginParam»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/superclient/logout": {
+      "get": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "superLogout",
+        "operationId": "superLogoutUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«DocLoginParam»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/superclient/vercode": {
+      "get": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "getSuperClientVerCode",
+        "operationId": "getSuperClientVerCodeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«DocLoginParam»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/unbindphone": {
+      "put": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "unbindphone",
+        "operationId": "unbindphoneUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«DocLoginParam»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/validate": {
+      "get": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "validateToken",
+        "operationId": "validateTokenUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "description": "token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«boolean»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/docinfo/vercode/bindphone": {
+      "get": {
+        "tags": [
+          "医生用户基本信息接口"
+        ],
+        "summary": "getBindVerPhone",
+        "operationId": "getBindVerPhoneUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "phone",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/dutyonline": {
+      "post": {
+        "tags": [
+          "线上号源接口"
+        ],
+        "summary": "createDuty",
+        "description": "自主排班 type为2",
+        "operationId": "createDutyUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "dto",
+            "description": "dto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/排班参数"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/dutyonline/delduty/{deptCode}/{date}": {
+      "delete": {
+        "tags": [
+          "线上号源接口"
+        ],
+        "summary": "deleteDuty",
+        "operationId": "deleteDutyUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "date",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "deptCode",
+            "in": "path",
+            "description": "deptCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/dutyonline/details/flip": {
+      "put": {
+        "tags": [
+          "线上号源接口"
+        ],
+        "summary": "flipDetails",
+        "operationId": "flipDetailsUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "ids",
+            "description": "ids",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/dutyonline/dutywithdetails/{deptCode}/{date}": {
+      "get": {
+        "tags": [
+          "线上号源接口"
+        ],
+        "summary": "getDetails",
+        "operationId": "getDetailsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "date",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "deptCode",
+            "in": "path",
+            "description": "deptCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«List«BookDutyRosterOnlineVO»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/dutyonline/his": {
+      "get": {
+        "tags": [
+          "线上号源接口"
+        ],
+        "summary": "getHis",
+        "operationId": "getHisUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "size",
+            "required": false,
+            "type": "integer",
+            "default": 20,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/dutyonline/{deptCode}/{startDate}/{endDate}": {
+      "get": {
+        "tags": [
+          "线上号源接口"
+        ],
+        "summary": "getDateByDateRange",
+        "operationId": "getDateByDateRangeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "deptCode",
+            "in": "path",
+            "description": "deptCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "in": "path",
+            "description": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "startDate",
+            "in": "path",
+            "description": "startDate",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«List«按照天查询排班的Vo»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/oss/file": {
+      "get": {
+        "tags": [
+          "OSS文件上传"
+        ],
+        "summary": "downLoad",
+        "operationId": "downLoadUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fileName",
+            "in": "query",
+            "description": "fileName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "name",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "OSS文件上传"
+        ],
+        "summary": "往OSS中上传文件, 返回格式: 原图_缩略图",
+        "description": "往OSS中上传文件, 返回格式: 原图_缩略图",
+        "operationId": "uploadFileUsingPOST",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "file",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "OSS文件上传"
+        ],
+        "summary": "根据文件名删除OSS中文件",
+        "description": "根据文件名删除OSS中文件",
+        "operationId": "deleteFileUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fileName",
+            "in": "query",
+            "description": "fileName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/oss/file/mini-upload": {
+      "post": {
+        "tags": [
+          "OSS文件上传"
+        ],
+        "summary": "小程序上传图片",
+        "operationId": "uploadImageUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/oss/file/query": {
+      "get": {
+        "tags": [
+          "OSS文件上传"
+        ],
+        "summary": "查询oss前半段地址",
+        "description": "查询oss前半段地址",
+        "operationId": "getUrlUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/realname": {
+      "post": {
+        "tags": [
+          "医生实名认证相关接口"
+        ],
+        "summary": "手动认证接口",
+        "operationId": "identifyUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "vo",
+            "description": "vo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/认证信息"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«DocRealName»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/realname/authinfo": {
+      "get": {
+        "tags": [
+          "获取医生的实名认证信息和权限信息",
+          "医生实名认证相关接口"
+        ],
+        "summary": "getAuthInfo",
+        "description": "获取权限信息",
+        "operationId": "getAuthInfoUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/realname/checkandsave": {
+      "post": {
+        "tags": [
+          "医生实名认证相关接口"
+        ],
+        "summary": "checkAndSaveRealName",
+        "operationId": "checkAndSaveRealNameUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/realname/dept": {
+      "get": {
+        "tags": [
+          "医生实名认证相关接口"
+        ],
+        "summary": "getDepts",
+        "description": "获取认证科室信息 医生端授权(authTypes)类型包括 func_net_clinic(视频问诊)func_consult( 在线咨询) func_hos_clinic(医院门诊) func_inpat_query( 住院查询),多个用都好隔开",
+        "operationId": "getDeptsUsingGET_2",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "authTypes",
+            "in": "query",
+            "description": "authTypes",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/realname/realname": {
+      "post": {
+        "tags": [
+          "医生实名认证相关接口"
+        ],
+        "summary": "realName",
+        "operationId": "realNameUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "dto",
+            "description": "dto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/医生自动认证"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/realname/status": {
+      "get": {
+        "tags": [
+          "医生实名认证相关接口"
+        ],
+        "summary": "getRealNameStatus",
+        "description": "获取医生在当前医院的实名认证状态，返回值为:1未认证2认证中3已认证,4认证失败",
+        "operationId": "getRealNameStatusUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v2/msg/send": {
+      "post": {
+        "tags": [
+          "msg-manage-controller"
+        ],
+        "summary": "sendMsg",
+        "operationId": "sendMsgUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appKey",
+            "in": "header",
+            "description": "appKey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appSecret",
+            "in": "header",
+            "description": "appSecret",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "dto",
+            "description": "dto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ImMsgDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«object»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v2/usermanage": {
+      "post": {
+        "tags": [
+          "doc-im-controller"
+        ],
+        "summary": "createUser",
+        "description": "测试创建用户",
+        "operationId": "createUserUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appKey",
+            "in": "header",
+            "description": "appKey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appSecret",
+            "in": "header",
+            "description": "appSecret",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "param",
+            "description": "param",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ImCreateUserParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«ImCreateUserRes»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "doc-im-controller"
+        ],
+        "summary": "updateUser",
+        "description": "测试更新用户信息",
+        "operationId": "updateUserUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appKey",
+            "in": "header",
+            "description": "appKey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appSecret",
+            "in": "header",
+            "description": "appSecret",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "param",
+            "description": "param",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ImCreateUserParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«ImCreateUserRes»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v2/usermanage/token/{accid}": {
+      "get": {
+        "tags": [
+          "doc-im-controller"
+        ],
+        "summary": "getImToken",
+        "description": "获取用户token",
+        "operationId": "getImTokenUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accid",
+            "in": "path",
+            "description": "accid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "appKey",
+            "in": "query",
+            "description": "appKey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appSecret",
+            "in": "query",
+            "description": "appSecret",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«string»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v2/usermanage/{accids}": {
+      "get": {
+        "tags": [
+          "doc-im-controller"
+        ],
+        "summary": "getUserInfo",
+        "description": "测试更新用户信息,多个用逗号隔开",
+        "operationId": "getUserInfoUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "X-Api-Key",
+            "in": "header",
+            "description": "apikey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "description": "token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hos-Id",
+            "in": "header",
+            "description": "hosId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "usrId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accids",
+            "in": "path",
+            "description": "accids",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "appKey",
+            "in": "header",
+            "description": "appKey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appSecret",
+            "in": "header",
+            "description": "appSecret",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "logintype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appversion",
+            "in": "header",
+            "description": "appversion",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JsonResult«ImGetInfoRes»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "AuthToken": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string"
+        },
+        "imToken": {
+          "type": "string"
+        },
+        "refreshToken": {
+          "type": "string"
+        }
+      },
+      "title": "AuthToken"
+    },
+    "BookDutyRosterOnlineDetailVO": {
+      "type": "object",
+      "properties": {
+        "activation": {
+          "type": "boolean"
+        },
+        "dutyRosterId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "locked": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "timeout": {
+          "type": "boolean"
+        }
+      },
+      "title": "BookDutyRosterOnlineDetailVO"
+    },
+    "BookDutyRosterOnlineVO": {
+      "type": "object",
+      "properties": {
+        "absentReason": {
+          "type": "string"
+        },
+        "avgMin": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deptCode": {
+          "type": "string"
+        },
+        "deptName": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BookDutyRosterOnlineDetailVO"
+          }
+        },
+        "docCode": {
+          "type": "string"
+        },
+        "docId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "docName": {
+          "type": "string"
+        },
+        "dutyStoped": {
+          "type": "boolean"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "hosId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "noonDc": {
+          "type": "string"
+        },
+        "noonDn": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "reglevelDc": {
+          "type": "string"
+        },
+        "reglevelDn": {
+          "type": "string"
+        },
+        "sourceNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "typeDc": {
+          "type": "string",
+          "description": "排班类型 1 科室排班 2 医生自助排班 3 申请问诊排班"
+        },
+        "typeDn": {
+          "type": "string"
+        }
+      },
+      "title": "BookDutyRosterOnlineVO"
+    },
+    "CliPrinterConfig": {
+      "type": "object",
+      "properties": {
+        "comments": {
+          "type": "string"
+        },
+        "createTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createUser": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "docCode": {
+          "type": "string"
+        },
+        "docName": {
+          "type": "string"
+        },
+        "hosId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "presPrinter": {
+          "type": "string"
+        },
+        "producer": {
+          "type": "string"
+        },
+        "receiptPrinter": {
+          "type": "string"
+        },
+        "showFlag": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updateUser": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "CliPrinterConfig"
+    },
+    "DocLoginParam": {
+      "type": "object",
+      "properties": {
+        "appVersion": {
+          "type": "string",
+          "description": "app版本"
+        },
+        "deviceInfo": {
+          "type": "string",
+          "description": "设备信息"
+        },
+        "docCode": {
+          "type": "string",
+          "description": "登录医生code"
+        },
+        "hosId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "ip": {
+          "type": "string",
+          "description": "ip"
+        },
+        "password": {
+          "type": "string"
+        },
+        "pushKey": {
+          "type": "string",
+          "description": "登录推送id"
+        },
+        "terminal": {
+          "type": "integer",
+          "format": "int32",
+          "description": "登录终端 1:PC 2:APP 3:SUPER 超级客户端"
+        },
+        "usernameOrPhone": {
+          "type": "string"
+        },
+        "wechatCode": {
+          "type": "string",
+          "description": "微信code"
+        }
+      },
+      "title": "DocLoginParam"
+    },
+    "DocRealName": {
+      "type": "object",
+      "properties": {
+        "authStateDc": {
+          "type": "string"
+        },
+        "comments": {
+          "type": "string"
+        },
+        "createTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createUser": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "defaultDeptCode": {
+          "type": "string"
+        },
+        "docCode": {
+          "type": "string"
+        },
+        "docId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "docName": {
+          "type": "string"
+        },
+        "empCardPath": {
+          "type": "string"
+        },
+        "hosId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "idCard": {
+          "type": "string"
+        },
+        "idcardPath1": {
+          "type": "string"
+        },
+        "idcardPath2": {
+          "type": "string"
+        },
+        "producer": {
+          "type": "string"
+        },
+        "professionalCertificatePath": {
+          "type": "string"
+        },
+        "refuseReason": {
+          "type": "string"
+        },
+        "tel": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updateUser": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "DocRealName"
+    },
+    "HospitalVO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "医院id"
+        },
+        "logo": {
+          "type": "string",
+          "description": "logo"
+        },
+        "name": {
+          "type": "string",
+          "description": "医院name"
+        }
+      },
+      "title": "HospitalVO"
+    },
+    "ImBussDTO": {
+      "type": "object",
+      "properties": {
+        "bussId": {
+          "type": "string"
+        },
+        "bussType": {
+          "type": "string",
+          "enum": [
+            "SCENE_CONSULT_TEXT",
+            "SCENE_CONSULT_VIDEO",
+            "SCENE_CONSULT_TEL",
+            "SCENE_CONSULT_REG",
+            "SCENE_DOC_CONTACT",
+            "SCENE_DOC_NOTI"
+          ]
+        }
+      },
+      "title": "ImBussDTO"
+    },
+    "ImCreateUserParam": {
+      "type": "object",
+      "properties": {
+        "accid": {
+          "type": "string"
+        },
+        "birth": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "ex": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "props": {
+          "type": "string"
+        },
+        "sign": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "title": "ImCreateUserParam"
+    },
+    "ImCreateUserRes": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "info": {
+          "$ref": "#/definitions/ImCreateUserResDTO"
+        }
+      },
+      "title": "ImCreateUserRes"
+    },
+    "ImCreateUserResDTO": {
+      "type": "object",
+      "properties": {
+        "accid": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "title": "ImCreateUserResDTO"
+    },
+    "ImGetInfoRes": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "uinfos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ImCreateUserParam"
+          }
+        }
+      },
+      "title": "ImGetInfoRes"
+    },
+    "ImMsg": {
+      "type": "object",
+      "properties": {
+        "card": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "grey": {
+          "type": "boolean"
+        },
+        "imSync": {
+          "type": "boolean"
+        },
+        "msg": {
+          "type": "string"
+        }
+      },
+      "title": "ImMsg"
+    },
+    "ImMsgDTO": {
+      "type": "object",
+      "properties": {
+        "bussInfo": {
+          "$ref": "#/definitions/ImBussDTO"
+        },
+        "extra": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "from": {
+          "type": "string"
+        },
+        "fromClient": {
+          "type": "string",
+          "enum": [
+            "DOC",
+            "PAT"
+          ]
+        },
+        "msg": {
+          "$ref": "#/definitions/ImMsg"
+        },
+        "param": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "to": {
+          "type": "string"
+        },
+        "toClient": {
+          "type": "string",
+          "enum": [
+            "DOC",
+            "PAT"
+          ]
+        }
+      },
+      "title": "ImMsgDTO"
+    },
+    "JsonResult": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "object"
+        },
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "JsonResult"
+    },
+    "JsonResult«AuthToken»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/AuthToken"
+        },
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "JsonResult«AuthToken»"
+    },
+    "JsonResult«DocLoginParam»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/DocLoginParam"
+        },
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "JsonResult«DocLoginParam»"
+    },
+    "JsonResult«DocRealName»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/DocRealName"
+        },
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "JsonResult«DocRealName»"
+    },
+    "JsonResult«ImCreateUserRes»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/ImCreateUserRes"
+        },
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "JsonResult«ImCreateUserRes»"
+    },
+    "JsonResult«ImGetInfoRes»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/ImGetInfoRes"
+        },
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "JsonResult«ImGetInfoRes»"
+    },
+    "JsonResult«List«BookDutyRosterOnlineVO»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BookDutyRosterOnlineVO"
+          }
+        },
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "JsonResult«List«BookDutyRosterOnlineVO»»"
+    },
+    "JsonResult«List«HospitalVO»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HospitalVO"
+          }
+        },
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "JsonResult«List«HospitalVO»»"
+    },
+    "JsonResult«List«按照天查询排班的Vo»»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/按照天查询排班的Vo"
+          }
+        },
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "JsonResult«List«按照天查询排班的Vo»»"
+    },
+    "JsonResult«boolean»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "JsonResult«boolean»"
+    },
+    "JsonResult«object»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "object"
+        },
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "JsonResult«object»"
+    },
+    "JsonResult«string»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "JsonResult«string»"
+    },
+    "JsonResult«医院用户»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/医院用户"
+        },
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "JsonResult«医院用户»"
+    },
+    "JsonResult«用户基本信息»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/用户基本信息"
+        },
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "JsonResult«用户基本信息»"
+    },
+    "医生自动认证": {
+      "type": "object",
+      "title": "医生自动认证"
+    },
+    "医院用户": {
+      "type": "object",
+      "properties": {
+        "deptCode": {
+          "type": "string",
+          "description": "行政科室"
+        },
+        "deptName": {
+          "type": "string",
+          "description": "行政科室"
+        },
+        "eduDc": {
+          "type": "string",
+          "description": "教育背景"
+        },
+        "eduDn": {
+          "type": "string",
+          "description": "教育背景"
+        },
+        "keyword": {
+          "type": "string",
+          "description": "搜索关键字"
+        },
+        "levelDc": {
+          "type": "string",
+          "description": "职级"
+        },
+        "levelDn": {
+          "type": "string",
+          "description": "职级"
+        },
+        "startWorkTimestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "开始工作时间"
+        },
+        "titleDc": {
+          "type": "string",
+          "description": "职称"
+        },
+        "titleDn": {
+          "type": "string",
+          "description": "职称"
+        },
+        "type": {
+          "type": "string",
+          "description": "医生类型"
+        },
+        "typeDn": {
+          "type": "string",
+          "description": "医生类型"
+        }
+      },
+      "title": "医院用户"
+    },
+    "按照天查询排班的Vo": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "医院id"
+        },
+        "deptCode": {
+          "type": "string",
+          "description": "科室code"
+        },
+        "deptName": {
+          "type": "string",
+          "description": "科室name"
+        },
+        "docCode": {
+          "type": "string",
+          "description": "医生code"
+        },
+        "docName": {
+          "type": "string",
+          "description": "医生name"
+        },
+        "dutyIds": {
+          "type": "array",
+          "description": "排班",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "dutyStoped": {
+          "type": "boolean",
+          "description": "是否停诊"
+        },
+        "hosId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "price": {
+          "type": "number",
+          "description": "价格"
+        },
+        "typeDc": {
+          "type": "string",
+          "description": "排班类型 1 科室排班 2 自助排班 3 接诊排班"
+        }
+      },
+      "title": "按照天查询排班的Vo"
+    },
+    "排班参数": {
+      "type": "object",
+      "properties": {
+        "avgMin": {
+          "type": "integer",
+          "format": "int32",
+          "description": "平均问诊时间"
+        },
+        "date": {
+          "type": "string",
+          "description": "日期，格式为yyyy-MM-dd"
+        },
+        "deptCode": {
+          "type": "string",
+          "description": "科室code"
+        },
+        "docCode": {
+          "type": "string",
+          "description": "医生code"
+        },
+        "hosId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "医院id,如果在优先去该值，如果没有，则从header中获取"
+        },
+        "typeDc": {
+          "type": "string",
+          "description": "排班类型 字典code 1:科室排班,2:医生排班,3:医生端医生自主排班"
+        }
+      },
+      "title": "排班参数"
+    },
+    "用户基本信息": {
+      "type": "object",
+      "properties": {
+        "avatar": {
+          "type": "string",
+          "description": "头像"
+        },
+        "birthday": {
+          "type": "string",
+          "format": "date-time",
+          "description": "生日"
+        },
+        "defaultHosId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "默认医院"
+        },
+        "email": {
+          "type": "string",
+          "description": "邮箱"
+        },
+        "fieldDc": {
+          "type": "array",
+          "description": "领域",
+          "items": {
+            "type": "string"
+          }
+        },
+        "fieldDn": {
+          "type": "array",
+          "description": "领域",
+          "items": {
+            "type": "string"
+          }
+        },
+        "goodAt": {
+          "type": "array",
+          "description": "擅长",
+          "items": {
+            "type": "string"
+          }
+        },
+        "goodAtDisease": {
+          "type": "array",
+          "description": "擅长疾病",
+          "items": {
+            "type": "string"
+          }
+        },
+        "honor": {
+          "type": "string",
+          "description": "荣誉"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "用户id"
+        },
+        "idCard": {
+          "type": "string",
+          "description": "身份证"
+        },
+        "infoSwitch": {
+          "type": "integer",
+          "format": "int32",
+          "description": "业务开关"
+        },
+        "introduction": {
+          "type": "string",
+          "description": "介绍"
+        },
+        "keyword": {
+          "type": "string",
+          "description": "搜索关键字"
+        },
+        "name": {
+          "type": "string",
+          "description": "用户name"
+        },
+        "phone": {
+          "type": "string",
+          "description": "手机"
+        },
+        "pushSwitch": {
+          "type": "integer",
+          "format": "int32",
+          "description": "推送开关"
+        },
+        "sexDc": {
+          "type": "string",
+          "description": "用户性别"
+        },
+        "sexDn": {
+          "type": "string",
+          "description": "用户性别"
+        },
+        "signPath": {
+          "type": "string",
+          "description": "签名图片"
+        },
+        "state": {
+          "type": "string",
+          "description": "用户状态 0 禁用 1 有效"
+        },
+        "wechatId": {
+          "type": "string",
+          "description": "微信id"
+        }
+      },
+      "title": "用户基本信息"
+    },
+    "认证信息": {
+      "type": "object",
+      "properties": {
+        "docCode": {
+          "type": "string",
+          "description": "医生code"
+        },
+        "empCardPath": {
+          "type": "string",
+          "description": "工作证"
+        },
+        "idcard": {
+          "type": "string",
+          "description": "身份证"
+        },
+        "name": {
+          "type": "string",
+          "description": "医生姓名"
+        },
+        "professionalCertificatePath": {
+          "type": "string",
+          "description": "执业证书"
+        },
+        "startWorkTime": {
+          "type": "string",
+          "description": "开始工作时间"
+        }
+      },
+      "title": "认证信息"
+    }
+  }
+}

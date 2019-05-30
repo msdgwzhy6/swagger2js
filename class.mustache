@@ -1,7 +1,10 @@
+import Axios, {AxiosPromise, AxiosRequestConfig} from "axios";
+
 interface Result {
-    url: string;
-    method: string;
-    body: any;
+success: boolean;
+data: any;
+code: number;
+message: string;
 }
 
 /**
@@ -10,13 +13,35 @@ interface Result {
 * 接口数量:{{&methodCount}}
 */
 export default {
-    /**
-    * 域名
-    */
-    domain: '{{&domain}}',
+_baseURL: '{{&_baseURL}}',
+_instance: null,
 
-    {{#methods}}
-        {{> method}}
+get getInstance() {
+if (!this._instance) {
+this._instance = Axios.create({
+baseURL: this._baseURL
+})
+}
+return this._instance;
+},
 
-    {{/methods}}
+set baseURL(url) {
+if (this._instance) {
+throw new Error('Axios已实例化，无效操作');
+}
+this._baseURL = url;
+},
+
+getQueryParams(query) {
+let queryParams = '';
+if (query) {
+queryParams = Object.keys(query).map(key => `${key}=${query[key]}`).join('&')
+}
+return queryParams ? '?' + queryParams : '';
+},
+
+{{#methods}}
+    {{> method}}
+
+{{/methods}}
 }
