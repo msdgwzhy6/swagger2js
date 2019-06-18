@@ -9,6 +9,7 @@
 ## Future
 
 - 增加配置可选择是否使用asiox
+- 增加变更日志
 
 ## Example
 ```javascript
