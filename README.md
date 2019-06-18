@@ -6,6 +6,10 @@
 - Using [npm](https://www.npmjs.com/#getting-started): `npm install swagger2js --save`
 - Using [Yarn](https://yarnpkg.com/): `yarn add swagger2js`
 
+## Future
+
+- 增加配置可选择是否使用asiox
+
 ## Example
 ```javascript
 const {swagger2js} = require('../index');
