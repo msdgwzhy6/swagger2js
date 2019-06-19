@@ -25,7 +25,7 @@ const transType = (type) => {
     return 'number';
   } else if (type === 'boolean') {
     return 'boolean';
-  }else if (type === 'array') {
+  } else if (type === 'array') {
     return 'any[]';
   }
   return type;
@@ -33,7 +33,7 @@ const transType = (type) => {
 
 function userHasTsc() {
   try {
-    const result = spawn.sync('tsc', ['--version'], { stdio: 'ignore' });
+    const result = spawn.sync('tsc', ['--version'], {stdio: 'ignore'});
     if (result.error || result.status !== 0) {
       return false;
     }
@@ -45,22 +45,9 @@ function userHasTsc() {
 
 function makeDir(name) {
   try {
-    spawn.sync('mkdir', [name], { stdio: 'ignore' });
+    spawn.sync('mkdir', [name], {stdio: 'ignore'});
   } catch (e) {
   }
-}
-
-function getNowString() {
-  const now = new Date();
-  return [
-    now.getFullYear(),
-    now.getMonth() + 1,
-    now.getDate(),
-    now.getHours(),
-    now.getMinutes(),
-    now.getSeconds()
-
-  ]
 }
 
 /**
@@ -265,9 +252,9 @@ function writeApiFile({code, pathName}) {
     if (!userHasTsc()) {
       console.log(`${pathName}.js 生成失败, 请确认是否全局安装typescript [npm install -g typescript]`);
     } else {
-      process.exec(`tsc ${pathName}.ts`,function (error, stdout, stderr) {
+      process.exec(`tsc ${pathName}.ts`, function (error, stdout, stderr) {
         // if (!error) {
-        //   console.log(`${pathName}.js 已生成----------------------------------------------`);
+        console.log(`${pathName}.js 已生成----------------------------------------------`);
         // } else {
         //   console.log(`${pathName}.js 生成失败`, error);
         // }
