@@ -26,7 +26,7 @@ const transType = (type) => {
   } else if (type === 'boolean') {
     return 'boolean';
   }else if (type === 'array') {
-    return '[]';
+    return 'any[]';
   }
   return type;
 };
@@ -41,6 +41,26 @@ function userHasTsc() {
   } catch (e) {
     return false;
   }
+}
+
+function makeDir(name) {
+  try {
+    spawn.sync('mkdir', [name], { stdio: 'ignore' });
+  } catch (e) {
+  }
+}
+
+function getNowString() {
+  const now = new Date();
+  return [
+    now.getFullYear(),
+    now.getMonth() + 1,
+    now.getDate(),
+    now.getHours(),
+    now.getMinutes(),
+    now.getSeconds()
+
+  ]
 }
 
 /**
@@ -157,7 +177,7 @@ function getBodyParams(parameters, definitions) {
  * @param swaggerJson
  * @returns {{title: *, description: *, domain: string}}
  */
-function getViewForSwagger(swaggerJson) {
+function getViewForSwagger(swaggerJson, config) {
   const {
     swagger,
     info: {
@@ -198,14 +218,15 @@ function getViewForSwagger(swaggerJson) {
     description,
     _baseURL: 'http://' + host + basePath + '/',
     methods,
-    methodCount: methods.length
+    methodCount: methods.length,
+    useAxios: config.useAxios
   };
 
   return data;
 }
 
 function getCode(swaggerJson, config) {
-  const data = getViewForSwagger(swaggerJson);
+  const data = getViewForSwagger(swaggerJson, config);
   const classTemplate = fs.readFileSync(__dirname + '/class.mustache', 'utf-8');
   const methodTemplate = fs.readFileSync(__dirname + '/method.mustache', 'utf-8');
   const source = Mustache.render(classTemplate, data, {
@@ -214,7 +235,94 @@ function getCode(swaggerJson, config) {
   return beautify(source, {indent_size: 2, max_preserve_newlines: 2});
 }
 
-function swagger2js({swaggerUrl, pathName = 'API', config}) {
+/**
+ * 生成请求到的数据
+ * @param json
+ * @param pathName
+ */
+function writeSwaggerJson({swaggerJson, pathName}) {
+  const json = JSON.stringify(swaggerJson, null, 2);
+  fs.writeFile(`${pathName}.json`, json, function (err) {
+    if (err) {
+      console.error(err);
+    }
+    console.log(`${pathName}.json 已生成----------------------------------------------`);
+  });
+}
+
+/**
+ * 生成API文件
+ * @param code
+ * @param pathName
+ */
+function writeApiFile({code, pathName}) {
+  fs.writeFile(`${pathName}.ts`, code, function (err) {
+    if (err) {
+      console.error(err);
+    }
+    console.log(`${pathName}.ts 已生成----------------------------------------------`);
+
+    if (!userHasTsc()) {
+      console.log(`${pathName}.js 生成失败, 请确认是否全局安装typescript [npm install -g typescript]`);
+    } else {
+      process.exec(`tsc ${pathName}.ts`,function (error, stdout, stderr) {
+        // if (!error) {
+        //   console.log(`${pathName}.js 已生成----------------------------------------------`);
+        // } else {
+        //   console.log(`${pathName}.js 生成失败`, error);
+        // }
+      });
+    }
+  })
+}
+
+/**
+ * 生成变更日志
+ */
+function writeLog({swaggerJson, config, pathName}) {
+  const {methods} = getViewForSwagger(swaggerJson, config);
+  const json = methods.map(({methodName}) => methodName);
+
+  let originList = [];
+
+  try {
+    originList = JSON.parse(fs.readFileSync(`${pathName}.list.json`, {encoding: 'utf-8'}));
+  } catch (e) {
+    console.log(`不存在之前的${pathName}.list.json`);
+  }
+
+  fs.writeFile(`${pathName}.list.json`, JSON.stringify(json), function (err) {
+    if (err) {
+      console.error(err);
+    }
+    console.log(`${pathName}.list.json 已生成----------------------------------------------`);
+  });
+
+  // 变更日志
+  const addItems = json.filter(item => !originList.includes(item));
+  const removeItem = originList.filter(item => !json.includes(item));
+
+  const logData = {
+    addItems, removeItem
+  };
+  const fileName = pathName.split('\/').slice(-1)[0];
+  const pathNames = pathName.split('\/').slice(0, -1);
+  makeDir(`${pathNames.join('\/')}/logs`);
+  fs.writeFile(`${pathNames.join('\/')}/logs/${fileName}-${new Date().toLocaleString()}.json`, JSON.stringify(logData), function (err) {
+    if (err) {
+      console.error(err);
+    }
+    console.log(`变更日志 已生成----------------------------------------------`);
+  });
+}
+
+const defaultConfig = {
+  useAxios: true, // 是否使用请求库
+  useLog: true, // 生成变更日志
+  saveOriginJson: true, // 保存请求到到数据
+};
+
+function swagger2js({swaggerUrl, pathName = 'API'}, config = defaultConfig) {
   console.log('开始请求----------------------------------------------');
   axios({
     method: 'get',
@@ -225,32 +333,14 @@ function swagger2js({swaggerUrl, pathName = 'API', config}) {
     if (data.swagger !== '2.0') {
       throw '只支持swagger2.0版本';
     }
-    const json = JSON.stringify(data, null, 2);
-    fs.writeFile(`${pathName}.json`, json, function (err) {
-      if (err) {
-        console.error(err);
-      }
-      console.log(`${pathName}.json 已生成----------------------------------------------`);
-    });
+    if (config.saveOriginJson) {
+      writeSwaggerJson({swaggerJson: data, pathName});
+    }
     const code = getCode(data, config);
-    fs.writeFile(`${pathName}.ts`, code, function (err) {
-      if (err) {
-        console.error(err);
-      }
-      console.log(`${pathName}.ts 已生成----------------------------------------------`);
-
-      if (!userHasTsc()) {
-        console.log(`${pathName}.js 生成失败, 请确认是否全局安装typescript [npm install -g typescript]`);
-      } else {
-        process.exec(`tsc ${pathName}.ts`,function (error, stdout, stderr) {
-          if (!error) {
-            console.log(`${pathName}.js 已生成----------------------------------------------`);
-          } else {
-            console.log(`${pathName}.js 生成失败`, error);
-          }
-        });
-      }
-    })
+    writeApiFile({code, pathName});
+    if (config.useLog) {
+      writeLog({swaggerJson: data, config, pathName});
+    }
   }).catch(function (err) {
     console.error(new Error(err));
   });

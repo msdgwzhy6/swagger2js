@@ -33,10 +33,17 @@
 {{/params}}
 ): {{&responseType}} {
 
-return this.getInstance.request({
-    url: `{{&url}}` + this.getQueryParams(query),
-    method: '{{&requestMethod}}',
-    data: body,
-    ...config
-})
+const requestParams = {
+url: `{{&url}}` + this.getQueryParams(query),
+method: '{{&requestMethod}}',
+data: body,
+...config
+};
+
+{{#useAxios}}
+    return this.getInstance.request(requestParams);
+{{/useAxios}}
+{{^useAxios}}
+    return requestParams;
+{{/useAxios}}
 },

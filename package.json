@@ -1,6 +1,6 @@
 {
   "name": "swagger2js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "根据swagger的json数据生成js可直接使用的API文件",
   "main": "index.js",
   "scripts": {
